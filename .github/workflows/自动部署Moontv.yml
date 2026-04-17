@@ -284,9 +284,9 @@ jobs:
           cf set-env ${{ env.APP_NAME }} UPSTASH_TOKEN "${{ secrets.UPSTASH_TOKEN }}"
           cf set-env ${{ env.APP_NAME }} NEXT_PUBLIC_DISABLE_YELLOW_FILTER "${{ secrets.NEXT_PUBLIC_DISABLE_YELLOW_FILTER || 'false' }}"
 
-          # 修复缩略图/海报首次不显示问题
-          cf set-env ${{ env.APP_NAME }} NEXT_PUBLIC_DOUBAN_PROXY_TYPE "cmliussss-cdn-tencent"
-          cf set-env ${{ env.APP_NAME }} NEXT_PUBLIC_DOUBAN_IMAGE_PROXY_TYPE "cmliussss-cdn-tencent"
+          # 修复首页缩略图首次不显示，同时不影响搜索和播放
+          cf set-env ${{ env.APP_NAME }} NEXT_PUBLIC_DOUBAN_PROXY_TYPE "direct"
+          cf set-env ${{ env.APP_NAME }} NEXT_PUBLIC_DOUBAN_IMAGE_PROXY_TYPE "server"
 
           cf restage ${{ env.APP_NAME }}
 
